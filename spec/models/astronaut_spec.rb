@@ -15,3 +15,15 @@ describe 'Class Methods' do
       it {should have_many(:space_missions).through(:astronaut_space_missions)}
     end
   end
+
+  describe 'Instance methods' do
+    it 'can sort alphabetically the space mission' do
+      astronaut = Astronaut.create(name: "Paul", age: 50, job: "Commander")
+      space_mission_1 = SpaceMission.create(title: "Apollo", trip_length: 34)
+      space_mission_2 = SpaceMission.create(title: "Odysse", trip_length: 45)
+      AstronautSpaceMission.create(astronaut_id: astronaut.id, space_mission_id: space_mission_1.id)
+      AstronautSpaceMission.create(astronaut_id: astronaut.id, space_mission_id: space_mission_2.id)
+
+      expect(astronaut.space_missions_order).to eq([space_mission_1, space_mission_2])
+    end
+  end
