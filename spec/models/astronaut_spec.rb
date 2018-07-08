@@ -9,3 +9,9 @@ describe 'Class Methods' do
       expect(Astronaut.average_age).to eq(expected_result)
     end
   end
+
+  describe Astronaut, type: :model do
+    describe 'relationships' do
+      it {should have_many(:space_missions).through(:astronaut_space_missions)}
+    end
+  end
