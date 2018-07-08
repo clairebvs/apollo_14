@@ -26,4 +26,18 @@ describe 'Class Methods' do
 
       expect(astronaut.space_missions_order).to eq([space_mission_1, space_mission_2])
     end
+
+    it 'can sum total time in space for each astronauts' do
+      astronaut = Astronaut.create(name: "Paul", age: 50, job: "Commander")
+      space_mission_1 = SpaceMission.create(title: "Apollo", trip_length: 34)
+      space_mission_2 = SpaceMission.create(title: "Odysse", trip_length: 45)
+      AstronautSpaceMission.create(astronaut_id: astronaut.id, space_mission_id: space_mission_1.id)
+      AstronautSpaceMission.create(astronaut_id: astronaut.id, space_mission_id: space_mission_2.id)
+
+      expected_result = 79
+
+      expect(astronaut.total_time).to eq(expected_result)
+    end
+
+
   end

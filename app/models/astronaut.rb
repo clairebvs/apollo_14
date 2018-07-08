@@ -9,4 +9,8 @@ class Astronaut < ApplicationRecord
   def space_missions_order
     space_missions.order('title ASC')
   end
+
+  def total_time
+    space_missions.sum(:trip_length)
+  end
 end

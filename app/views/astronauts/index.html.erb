@@ -10,6 +10,8 @@
   <% astronaut.space_missions_order.each do |mission| %>
     <p> <%= mission.title %> </p>
   <% end %>
+
+  <p> Total time: <%= astronaut.total_time %> </p> 
 <% end %>
 
 <p> Average age: <%= @average_age %></p>

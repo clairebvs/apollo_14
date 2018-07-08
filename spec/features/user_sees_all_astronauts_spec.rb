@@ -39,4 +39,17 @@ describe "user_index" do
     expect(page).to have_content(" #{space_mission_2.title}")
   end
 
+  it "user sees total time spent in space for each astronauts" do
+    astronaut_1 = Astronaut.create(name: "Paul", age: 50, job: "Commander")
+    space_mission_1 = SpaceMission.create(title: "Apollo", trip_length: 34)
+    space_mission_2 = SpaceMission.create(title: "Odysse", trip_length: 45)
+    AstronautSpaceMission.create(astronaut_id: astronaut_1.id, space_mission_id: space_mission_1.id)
+    AstronautSpaceMission.create(astronaut_id: astronaut_1.id, space_mission_id: space_mission_2.id)
+
+    visit astronauts_path
+
+    expected_result = 79
+
+    expect(page).to have_content("Total time: #{expected_result}")
+  end
 end
